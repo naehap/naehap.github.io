@@ -1,14 +1,23 @@
 {
-  "name": "a01",
+  "name": "naehap.github.io",
   "version": "1.0.0",
-  "description": "",
+  "description": "Final Project COMP 426",
   "main": "index.js",
+  "dependencies": {
+    "browser-sync": "^2.26.14"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naehap/naehap.github.io.git"
+  },
+  "author": "Naeha Prabhu",
   "license": "ISC",
-  "dependencies": {
-    "browser-sync": "^2.26.14"
-  }
+  "bugs": {
+    "url": "https://github.com/naehap/naehap.github.io/issues"
+  },
+  "homepage": "https://github.com/naehap/naehap.github.io#readme"
 }
