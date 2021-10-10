@@ -153,8 +153,25 @@ export async function dogAPI(){
   let dogpic = await fetch('https://dog.ceo/api/breeds/image/random');
   let data = await dogpic.json();
   let fact = data.message;
-  console.log(fact);
+  //console.log(fact);
   useDogdata(fact);
+}
+export async function boredAPI(){
+  let bored = await fetch('https://www.boredapi.com/api/activity/');
+  let data = await bored.json();
+  let fact = data.activity;
+  //console.log(fact);
+  useBoreddata(fact)
+  //let data = await bored.json();
+  //let fact = data.message;
+  //console.log(fact);
+  //useDogdata(fact);
+}
+export async function jokeAPI(){
+  let joke = await fetch('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit');
+  let fact = await joke.json();
+  useJokedata(fact);
+  console.log(fact)
 }
 export async function useApiData(data){
   document.querySelector("#category").innerHTML =  `The category of this question is: ${data.results[0].category} and the question difficulty is ${data.results[0].difficulty}`;
@@ -203,7 +220,10 @@ function catsetup(){
   <br>
   <div class="box div1 is-family-secondary" id="cat">
   </div>
-  <div class = "box div1 vertical-align:top" id"bored">Test</div>
+  <div class = "box div1 vertical-align:top" id="bored">
+  </div>
+  <div class = "box div1" id="joke">
+  </div>
 
 `);
 }
@@ -217,12 +237,22 @@ function dogsetup(){
 `);
 }
 export async function useCatdata(fact){
-  document.querySelector("#cat").innerHTML =  `Heres a fun fact about cats while you're here: <br> ${fact}`;
+  document.querySelector("#cat").innerHTML =  `Here's a fun fact about cats while you're here: <br> ${fact}`;
 }
 export async function useDogdata(fact){
-  console.log(fact);
   document.querySelector("#dog").innerHTML =  `<img src="${fact}">`;
 }
+export async function useBoreddata(fact){
+  document.querySelector("#bored").innerHTML =  `Here's an activity you can do if you're bored: <br> ${fact}`;
+}
+export async function useJokedata(fact){
+  if(fact.setup == undefined){
+    document.querySelector("#joke").innerHTML =  `Here's an joke to make you smile:<br> ${fact.joke} `;
+  }else{
+    document.querySelector("#joke").innerHTML =  `Here's an joke to make you smile:<br> ${fact.setup} <br> ${fact.delivery} `;
+  } 
+  }
+  
 export async function Load() {
     let body = $('body');
     body.empty();
@@ -235,6 +265,8 @@ export async function Load() {
     triviaAPI();
     catAPI();
     dogAPI();
+    boredAPI();
+    jokeAPI();
     correct_answer();
     incorrect_answer();
     refresh_page();
